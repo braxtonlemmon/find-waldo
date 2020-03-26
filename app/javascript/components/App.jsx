@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import { Reset } from 'styled-reset';
+import GlobalStyle from './GlobalStyle.js';
 import Scene from './Scene.jsx';
+import CharacterBox from './CharacterBox.jsx';
+import "typeface-rye";
 
 const App = () => {
   const [isBoxActive, setIsBoxActive] = useState(false);
@@ -19,14 +22,16 @@ const App = () => {
   return (
     <>
       <Reset />
+      <GlobalStyle />
       <Scene 
         handleClick={handleClick}
       />
       {
         isBoxActive && 
-        <p>
-          {`x: ${posX} y: ${posY}`}
-        </p>
+        <CharacterBox
+          posX={posX}
+          posY={posY}
+        />
       }
     </>
   );

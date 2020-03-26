@@ -6,6 +6,7 @@ const Img = styled.img`
   border: 10px double black;
   min-height: 100%;
   position: relative;
+  cursor: crosshair;
 `;
 
 const Circle = styled.div`
