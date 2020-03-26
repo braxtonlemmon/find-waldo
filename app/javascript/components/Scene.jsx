@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GoldRushScene from 'images/gold_rush_scene.jpg';
 import styled from 'styled-components';
 
@@ -18,7 +18,7 @@ const Circle = styled.div`
   top: ${props => `${props.y}px` };
 `;
 
-const Scene = () => {
+const Scene = (props) => {
   const handleClick = () => {
     const parent = document.getElementById('waldoScene');
     const bounds = parent.getBoundingClientRect();
@@ -44,7 +44,7 @@ const Scene = () => {
       <Img 
         src={GoldRushScene} 
         alt="Where's Waldo Gold Rush Scene"
-        onClick={handleClick}
+        onClick={props.handleClick}
         id="waldoScene"
       />
     </div>
