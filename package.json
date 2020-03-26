@@ -16,8 +16,18 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "jest": "^25.2.1",
     "styled-components": "^5.0.1",
     "styled-reset": "^4.1.2",
     "webpack-dev-server": "^3.10.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "jest": {
+    "roots": [
+      "test/javascript"
+    ]
   }
 }
