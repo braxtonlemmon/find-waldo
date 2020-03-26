@@ -1,14 +1,14 @@
 import React from "react"
-import Paragraph from './Paragraph.jsx';
+import { Reset } from 'styled-reset';
 import Scene from './Scene.jsx';
 
 const App = () => {
   return (
     <>
-      <Paragraph />  
+      <Reset />
       <Scene />
     </>
   );
 }
 
-export default App
+export default App;
