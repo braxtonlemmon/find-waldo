@@ -11,6 +11,7 @@ class Api::V1::CharactersController < ApplicationController
                 .find_by(name: params[:name])
     render json: @character
   end
+
   private
 
   def character_params

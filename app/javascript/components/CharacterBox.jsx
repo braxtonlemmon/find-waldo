@@ -7,18 +7,12 @@ const FinderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  border: 2px dotted black;
   width: 100px;
   height: 210px;
   left: ${props => `${props.posX - 50}px`};
   top: ${props => `${props.posY - 40}px`};
-`;
-
-const Frame = styled.div`
-  border: 8px solid black;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
 `;
 
 const CharacterBox = (props) => {
@@ -27,11 +21,10 @@ const CharacterBox = (props) => {
       posX={props.posX}
       posY={props.posY}
     >
-      <Frame />
-      <CharacterOptions 
-        handleCharacterSelect={props.handleCharacterSelect}
-        characters={props.characters}
-      />
+    <CharacterOptions 
+      handleCharacterSelect={props.handleCharacterSelect}
+      characters={props.characters}
+    />
     </FinderContainer>
   )
 }

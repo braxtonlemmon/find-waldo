@@ -3,6 +3,7 @@ import { Reset } from 'styled-reset';
 import GlobalStyle from './GlobalStyle.js';
 import Scene from './Scene.jsx';
 import CharacterBox from './CharacterBox.jsx';
+import Frames from './Frames.jsx';
 import "typeface-rye";
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
   const [posX, setPosX] = useState(null);
   const [posY, setPosY] = useState(null);
   const [characters, setCharacters] = useState(null);
+  const [found, setFound] = useState([]);
 
   useEffect(() => {
     fetch('/api/v1/characters/index')
@@ -27,8 +29,8 @@ const App = () => {
   };
 
   const handleCharacterSelect = (name) => {
-    setIsBoxActive(prevState => !prevState);
     checkDatabase(name);  
+    setIsBoxActive(prevState => !prevState);
   };
 
   const checkDatabase = (name) => {
@@ -43,7 +45,13 @@ const App = () => {
       body: JSON.stringify({x: posX, y: posY, name: name })
     }).then(response => response.json())
     .then(json => {
-      if (json) console.log(`found ${name}`)
+      if (json) { 
+        setCharacters(characters.filter(character => { return character.name !== name }));
+        setFound(prevState => {
+          prevState.push(json);
+          return prevState;
+        });
+      }
     });
   }
 
@@ -63,7 +71,9 @@ const App = () => {
           characters={characters}
         />
       }
-
+      <Frames 
+        found={found}
+      />
     </>
   );
 }

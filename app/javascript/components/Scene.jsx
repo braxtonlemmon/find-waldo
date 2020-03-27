@@ -9,6 +9,10 @@ const Img = styled.img`
   cursor: crosshair;
 `;
 
+const SceneBox = styled.div`
+  position: relative;
+`;
+
 const handleMouseMove = (e) => {
   const bounds = document.getElementById('waldoScene').getBoundingClientRect();
   const x = e.clientX - bounds.left;
@@ -18,7 +22,7 @@ const handleMouseMove = (e) => {
 
 const Scene = (props) => {
   return (
-    <div className="scene-box">
+    <SceneBox>
       <Img 
         src={GoldRushScene} 
         alt="Where's Waldo Gold Rush Scene"
@@ -26,7 +30,7 @@ const Scene = (props) => {
         // onMouseMove={handleMouseMove}
         id="waldoScene"
       />
-    </div>
+    </SceneBox>
   )
 }
 

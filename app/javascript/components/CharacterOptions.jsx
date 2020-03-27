@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  background: grey;
   ul {
     width: 100%;
   }
@@ -26,7 +26,6 @@ const Item = styled.li`
 `;
 
 const CharacterOptions = (props) => {
-
   const generateList = () => {
     let list = [];
     props.characters.forEach(character => {
@@ -43,7 +42,6 @@ const CharacterOptions = (props) => {
     return list;
   }
   
-
   return (
     <Container>
       <ul>
