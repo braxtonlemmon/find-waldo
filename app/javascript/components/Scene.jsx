@@ -23,7 +23,7 @@ const Scene = (props) => {
         src={GoldRushScene} 
         alt="Where's Waldo Gold Rush Scene"
         onClick={props.handleClick}
-        onMouseMove={handleMouseMove}
+        // onMouseMove={handleMouseMove}
         id="waldoScene"
       />
     </div>

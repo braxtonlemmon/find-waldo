@@ -10,31 +10,44 @@ const Container = styled.div`
   ul {
     width: 100%;
   }
-  
-  li {
-    text-align: center;
-    border: 1px solid black;
-    background: yellow;
-    font-size: 18px;
-    font-family: 'Rye', cursive;
-    padding: 2px;
-    cursor: pointer;
-    &:hover {
-      background: lightseagreen;
-    }
-    }
+`;
+
+const Item = styled.li`
+  text-align: center;
+  border: 1px solid black;
+  background: yellow;
+  font-size: 18px;
+  font-family: 'Rye', cursive;
+  padding: 2px;
+  cursor: pointer;
+  &:hover {
+    background: lightseagreen;
   }
 `;
 
-const CharacterOptions = () => {
+const CharacterOptions = (props) => {
+
+  const generateList = () => {
+    let list = [];
+    props.characters.forEach(character => {
+      return list.push(
+        <Item
+          key={character.name}
+          onClick={() => props.handleCharacterSelect(character.name)}
+        >
+          {character.name}
+        </Item>
+      )
+    })
+
+    return list;
+  }
+  
+
   return (
     <Container>
       <ul>
-        <li>Waldo</li>
-        <li>Wenda</li>
-        <li>Odlaw</li>
-        <li>Woof</li>
-        <li>Wizard</li>
+        {generateList()}
       </ul>
     </Container>
   )

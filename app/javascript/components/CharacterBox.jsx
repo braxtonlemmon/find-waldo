@@ -28,7 +28,10 @@ const CharacterBox = (props) => {
       posY={props.posY}
     >
       <Frame />
-      <CharacterOptions />
+      <CharacterOptions 
+        handleCharacterSelect={props.handleCharacterSelect}
+        characters={props.characters}
+      />
     </FinderContainer>
   )
 }
