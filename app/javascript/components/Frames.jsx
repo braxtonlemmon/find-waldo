@@ -2,26 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Frame = styled.div`
-  border: 2px solid black;
+  border: 4px dashed black;
   position: absolute;
   left: ${props => `${props.left - 10}px`};
   top: ${props => `${props.top - 10}px`};
   height: ${props => `${props.bottom - props.top + 20}px`};
   width: ${props => `${props.right - props.left + 20}px`};
+  background: rgba(0,15,255,0.33);
 `;
 
 const Frames = (props) => {
   const generateFrames = () => {
     let foundCharacters = [];
-    console.log(props.found);
-    props.found.forEach(found => {
+    props.boxes.forEach(box => {
       foundCharacters.push(
         <Frame
-          key={found.name}
-          left={found.left}
-          right={found.right}
-          top={found.top}
-          bottom={found.bottom}
+          key={box[0]}
+          left={box[0]}
+          right={box[1]}
+          top={box[2]}
+          bottom={box[3]} 
         />
       )
     })

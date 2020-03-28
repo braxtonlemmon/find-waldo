@@ -11,7 +11,6 @@ const App = () => {
   const [posX, setPosX] = useState(null);
   const [posY, setPosY] = useState(null);
   const [characters, setCharacters] = useState(null);
-  const [found, setFound] = useState([]);
   const [boxes, setBoxes] = useState([]);
 
   useEffect(() => {
@@ -34,6 +33,7 @@ const App = () => {
     setIsBoxActive(prevState => !prevState);
   };
 
+
   const checkDatabase = (name) => {
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     fetch('/api/v1/characters/find', {
@@ -47,11 +47,9 @@ const App = () => {
     }).then(response => response.json())
     .then(json => {
       if (json) { 
+        const coords = [json.left, json.right, json.top, json.bottom];
+        setBoxes(prevBoxes => ([...prevBoxes, ...[coords]]));
         setCharacters(characters.filter(character => { return character.name !== name }));
-        setFound(prevState => {
-          prevState.push(json);
-          return prevState;
-        });
       }
     });
   }
@@ -73,7 +71,7 @@ const App = () => {
         />
       }
       <Frames 
-        found={found}
+        boxes={boxes}
       />
     </>
   );
