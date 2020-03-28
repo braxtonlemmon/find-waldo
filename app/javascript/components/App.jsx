@@ -4,6 +4,7 @@ import GlobalStyle from './GlobalStyle.js';
 import Scene from './Scene.jsx';
 import CharacterBox from './CharacterBox.jsx';
 import Frames from './Frames.jsx';
+import MessageBox from './MessageBox.jsx';
 import "typeface-rye";
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
   const [posY, setPosY] = useState(null);
   const [characters, setCharacters] = useState(null);
   const [boxes, setBoxes] = useState([]);
+  const [isMessageActive, setIsMessageActive] = useState(false)
 
   useEffect(() => {
     fetch('/api/v1/characters/index')
@@ -31,8 +33,12 @@ const App = () => {
   const handleCharacterSelect = (name) => {
     checkDatabase(name);  
     setIsBoxActive(prevState => !prevState);
+    setIsMessageActive(true);
   };
 
+  const handleCloseMessage = () => {
+    setIsMessageActive(false);
+  }
 
   const checkDatabase = (name) => {
     const csrfToken = document.querySelector("[name='csrf-token']").content;
@@ -68,6 +74,14 @@ const App = () => {
           posY={posY}
           handleCharacterSelect={handleCharacterSelect}
           characters={characters}
+        />
+      }
+      {
+        isMessageActive && !isBoxActive &&
+        <MessageBox
+          posX={posX}
+          posY={posY}
+          handleCloseMessage={handleCloseMessage}
         />
       }
       <Frames 
