@@ -12,6 +12,7 @@ const App = () => {
   const [posY, setPosY] = useState(null);
   const [characters, setCharacters] = useState(null);
   const [found, setFound] = useState([]);
+  const [boxes, setBoxes] = useState([]);
 
   useEffect(() => {
     fetch('/api/v1/characters/index')
