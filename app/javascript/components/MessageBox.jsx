@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   border: 2px solid black;
   padding: 10px;
-  background: green;
+  background: ${props => props.isFound ? 'yellow' : '#ff4f5c'};
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -42,8 +42,11 @@ const MessageBox = (props) => {
     <Container
       posX={props.posX}
       posY={props.posY}
+      isFound={props.isFound}
     >
-      <Message>GOOD TRY</Message>
+      <Message>
+        {props.isFound ? 'Good job!' : 'Try again!'}
+      </Message>
       <Button
         onClick={props.handleCloseMessage}
       >

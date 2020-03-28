@@ -14,6 +14,7 @@ const App = () => {
   const [characters, setCharacters] = useState(null);
   const [boxes, setBoxes] = useState([]);
   const [isMessageActive, setIsMessageActive] = useState(false)
+  const [isFound, setIsFound] = useState(false);
 
   useEffect(() => {
     fetch('/api/v1/characters/index')
@@ -56,6 +57,9 @@ const App = () => {
         const coords = [json.left, json.right, json.top, json.bottom];
         setBoxes(prevBoxes => ([...prevBoxes, ...[coords]]));
         setCharacters(characters.filter(character => { return character.name !== name }));
+        setIsFound(true);
+      } else {
+        setIsFound(false);
       }
     });
   }
@@ -82,6 +86,7 @@ const App = () => {
           posX={posX}
           posY={posY}
           handleCloseMessage={handleCloseMessage}
+          isFound={isFound}
         />
       }
       <Frames 
