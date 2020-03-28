@@ -1,6 +1,7 @@
 class Api::V1::CharactersController < ApplicationController
   def index
-    render json: Character.all
+    @characters = Character.all
+    render json: @characters.to_json(only: [:name])
   end
 
   def find
