@@ -18,16 +18,19 @@ const App = () => {
   const [isMessageActive, setIsMessageActive] = useState(false)
   const [isFound, setIsFound] = useState(false);
   const [areAllFound, setAreAllFound] = useState(false);
-
+  const [startTime] = useState(Date.now());
+  
   useEffect(() => {
     getCharacters();
   }, []);
 
   useEffect(() => {
+    console.log('checking boxes');
+    console.log(startTime);
     if (boxes.length === 5) {
       setAreAllFound(true);
     }
-  })
+  }, [boxes]);
 
   const getCharacters = () => {
     fetch('/api/v1/characters/index')
@@ -120,6 +123,7 @@ const App = () => {
         areAllFound &&
         <FinishBox 
           handleCloseFinishBox={handleCloseFinishBox}
+          startTime={startTime}
         />
       }
     </>
