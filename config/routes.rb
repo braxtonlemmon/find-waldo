@@ -4,6 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get  'characters/index'
       post 'characters/find'
+      
+      get  'players/index'
+      post 'players/create'
     end
   end
 end
