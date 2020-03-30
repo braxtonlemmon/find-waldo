@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Button from './shared/Button.jsx';
 
 const Container = styled.div`
   display: flex;
@@ -18,23 +19,6 @@ const Message = styled.p`
   justify-self: center;
   font-family: 'Rye', cursive;
   margin: 0 10px;
-`;
-
-const Button = styled.button`
-  justify-self: flex-end;
-  cursor: pointer;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  font-size: 14px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  outline: none;
 `;
 
 const MessageBox = (props) => {

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { Reset } from 'styled-reset';
+import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle.js';
 import Scene from './Scene.jsx';
 import CharacterBox from './CharacterBox.jsx';
 import Frames from './Frames.jsx';
 import MessageBox from './MessageBox.jsx';
+import FinishBox from './FinishBox.jsx';
 import "typeface-rye";
 
 const App = () => {
@@ -15,20 +17,33 @@ const App = () => {
   const [boxes, setBoxes] = useState([]);
   const [isMessageActive, setIsMessageActive] = useState(false)
   const [isFound, setIsFound] = useState(false);
+  const [areAllFound, setAreAllFound] = useState(false);
 
   useEffect(() => {
+    getCharacters();
+  }, []);
+
+  useEffect(() => {
+    if (boxes.length === 5) {
+      setAreAllFound(true);
+    }
+  })
+
+  const getCharacters = () => {
     fetch('/api/v1/characters/index')
     .then(response => response.json())
     .then(result => {
       setCharacters(result)
     });
-  }, []);
+  }
 
   const handleClick = (e) => {
-    const bounds = document.getElementById('waldoScene').getBoundingClientRect();
-    setPosX(e.clientX - bounds.left);
-    setPosY(e.clientY - bounds.top);
-    setIsBoxActive(prevState => !prevState);
+    if (!areAllFound) {
+      const bounds = document.getElementById('waldoScene').getBoundingClientRect();
+      setPosX(e.clientX - bounds.left);
+      setPosY(e.clientY - bounds.top);
+      setIsBoxActive(prevState => !prevState);
+    }
   };
 
   const handleCharacterSelect = (name) => {
@@ -39,6 +54,15 @@ const App = () => {
 
   const handleCloseMessage = () => {
     setIsMessageActive(false);
+  }
+
+  const handleCloseFinishBox = () => {
+    getCharacters();
+    setBoxes([]);
+    setAreAllFound(false);
+    setIsFound(false);
+    setIsMessageActive(false);
+    setIsBoxActive(false);
   }
 
   const checkDatabase = (name) => {
@@ -92,6 +116,12 @@ const App = () => {
       <Frames 
         boxes={boxes}
       />
+      {
+        areAllFound &&
+        <FinishBox 
+          handleCloseFinishBox={handleCloseFinishBox}
+        />
+      }
     </>
   );
 }
