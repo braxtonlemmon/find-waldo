@@ -12,7 +12,7 @@ const Container = styled.div`
   align-items: center;
   position: absolute;
   left: ${props => `${props.posX - 25}px`};
-  top: ${props => `${props.posY + 70}px`};
+  top: ${props => `${props.posY + 130}px`};
 `;
 
 const Message = styled.p`

@@ -94,7 +94,9 @@ const App = () => {
     <>
       <Reset />
       <GlobalStyle />
-      <Header startTime={startTime}/>
+      <Header 
+        startTime={startTime}
+      />
       <Scene 
         handleClick={handleClick}
       />

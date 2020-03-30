@@ -12,7 +12,7 @@ const FinderContainer = styled.div`
   width: 100px;
   height: 210px;
   left: ${props => `${props.posX - 50}px`};
-  top: ${props => `${props.posY - 40}px`};
+  top: ${props => `${props.posY + 20}px`};
 `;
 
 const CharacterBox = (props) => {

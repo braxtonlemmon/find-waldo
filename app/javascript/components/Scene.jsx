@@ -7,6 +7,7 @@ const Img = styled.img`
   min-height: 100%;
   position: relative;
   cursor: crosshair;
+
 `;
 
 const SceneBox = styled.div`
