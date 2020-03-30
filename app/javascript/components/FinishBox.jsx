@@ -37,8 +37,7 @@ const FinishBox = (props) =>  {
   }
 
   const handleSubmit = () => {
-    console.log('submitting...');
-    const length = (endTime - props.startTime) / 1000;
+    const length = ((endTime - props.startTime) / 1000).toFixed(2);
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     fetch('/api/v1/players/create', {
       method: 'POST',
@@ -51,8 +50,15 @@ const FinishBox = (props) =>  {
         name: name, 
         length: length
       })
-    }).then(response => response.json())
-    .then(json => console.log(json));
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Network response was not ok.")
+    })
+    .then(() => props.handleCloseFinishBox())
+    .catch(error => console.log(error.message))
   }
 
   return (
@@ -62,8 +68,7 @@ const FinishBox = (props) =>  {
         value={name}
         onChange={handleChange}
       />
-
-      <p>You did it!</p>
+      <p>You did it in {(endTime - props.startTime) / 1000} seconds</p>
       <Button
         onClick={props.handleCloseFinishBox}
       >

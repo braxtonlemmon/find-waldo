@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Reset } from 'styled-reset';
-import styled from 'styled-components';
 import GlobalStyle from './GlobalStyle.js';
+import Header from './Header.jsx';
 import Scene from './Scene.jsx';
 import CharacterBox from './CharacterBox.jsx';
 import Frames from './Frames.jsx';
@@ -18,15 +18,13 @@ const App = () => {
   const [isMessageActive, setIsMessageActive] = useState(false)
   const [isFound, setIsFound] = useState(false);
   const [areAllFound, setAreAllFound] = useState(false);
-  const [startTime] = useState(Date.now());
+  const [startTime, setStartTime] = useState(Date.now());
   
   useEffect(() => {
     getCharacters();
   }, []);
 
   useEffect(() => {
-    console.log('checking boxes');
-    console.log(startTime);
     if (boxes.length === 5) {
       setAreAllFound(true);
     }
@@ -66,6 +64,7 @@ const App = () => {
     setIsFound(false);
     setIsMessageActive(false);
     setIsBoxActive(false);
+    setStartTime(Date.now());
   }
 
   const checkDatabase = (name) => {
@@ -95,6 +94,7 @@ const App = () => {
     <>
       <Reset />
       <GlobalStyle />
+      <Header startTime={startTime}/>
       <Scene 
         handleClick={handleClick}
       />
