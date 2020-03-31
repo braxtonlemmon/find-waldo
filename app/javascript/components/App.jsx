@@ -18,7 +18,7 @@ const App = () => {
   const [boxes, setBoxes] = useState([]);
   const [isMessageActive, setIsMessageActive] = useState(false)
   const [isFound, setIsFound] = useState(false);
-  const [areAllFound, setAreAllFound] = useState(false);
+  const [areAllFound, setAreAllFound] = useState(true);
   const [startTime, setStartTime] = useState(Date.now());
   const [isTopScoresActive, setIsTopScoresActive] = useState(false);
   const [topScores, setTopScores] = useState(null);

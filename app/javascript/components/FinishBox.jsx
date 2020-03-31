@@ -20,15 +20,44 @@ const Container = styled.div`
     font-size: 2em;
     text-align: center;
   }
+  input {
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin: 15px;
+    font-size: 2em;
+    width: 70%;
+  }
+
+  &>* {
+    margin: 30px 0;
+  }
 `;
 
-const Button = styled(SharedButton)`
-  position: absolute;
-  bottom: 30%;
+const Button = styled.button`
+  border: none;
+  border-radius: 5px;
+  background: black;
+  color: white;
+  font-size: 1.3em;
+  padding: 8px;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    color: yellow;
+  }
+`;
+
+const ButtonBox = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 `;
 
 const FinishBox = (props) =>  {
-  const [endTime] = useState(Date.now());
+  const [length] = useState(((Date.now() - props.startTime) / 1000).toFixed(2));
   const [name, setName] = useState('');
   
   const handleChange = (e) => {
@@ -37,7 +66,10 @@ const FinishBox = (props) =>  {
   }
 
   const handleSubmit = () => {
-    const length = ((endTime - props.startTime) / 1000).toFixed(2);
+    if (name === '') {
+      alert('Please enter name!');
+      return false;
+    }
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     fetch('/api/v1/players/create', {
       method: 'POST',
@@ -63,18 +95,17 @@ const FinishBox = (props) =>  {
 
   return (
     <Container>
+      <p>You did it in {length} seconds!</p>
       <input
         type='text'
         value={name}
+        placeholder='enter name'
         onChange={handleChange}
       />
-      <p>You did it in {(endTime - props.startTime) / 1000} seconds</p>
-      <Button
-        onClick={props.handleCloseFinishBox}
-      >
-        x
-      </Button>
-      <button onClick={handleSubmit}>Submit</button>
+      <ButtonBox>
+        <Button onClick={props.handleCloseFinishBox}>Try Again</Button>
+        <Button onClick={handleSubmit}>Submit Score</Button>
+      </ButtonBox>
     </Container>
   )
 }
