@@ -134,21 +134,10 @@ const App = () => {
         handleClickTopScores={handleClickTopScores}
         isIntroActive={isIntroActive}
       />
-      
-      {
-        !isIntroActive &&
-        <Scene 
-          handleClick={handleClick}
-        /> 
-      } 
+      { !isIntroActive && <Scene handleClick={handleClick} /> } 
       <Characters />
-      { isIntroActive &&
-        <Intro
-          handleClickStart={handleClickStart}
-        />
-      }
-      {
-        isBoxActive && 
+      { isIntroActive && <Intro handleClickStart={handleClickStart} /> }
+      { isBoxActive && 
         <CharacterBox
           posX={posX}
           posY={posY}
@@ -165,9 +154,7 @@ const App = () => {
           isFound={isFound}
         />
       }
-      <Frames 
-        boxes={boxes}
-      />
+      <Frames boxes={boxes} />
       {
         areAllFound &&
         <FinishBox 

@@ -59,8 +59,8 @@ const TopScores = (props) => {
     let list = [];
     if (props.topScores) {
       props.topScores.forEach(scoreObj => {
-      list.push(<p>{scoreObj.name}</p>)
-      list.push(<p>{scoreObj.length}</p>)
+      list.push(<p key={scoreObj.name}>{scoreObj.name}</p>)
+      list.push(<p key={scoreObj.length}>{scoreObj.length}</p>)
       })
     }
     return list;

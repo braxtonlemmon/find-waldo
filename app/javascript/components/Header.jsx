@@ -24,6 +24,8 @@ const NavBar = styled.header`
   box-shadow: 0 5px 4px ${props => props.theme.main};
   h1 {
     font-size: 2em;
+    margin: 0;
+    padding: 0;
   }
 
   .timer-box {
@@ -51,14 +53,14 @@ const Header = (props) => {
     const interval = setInterval(() => {
     setTime(Date.now());
     }, 100);
-
+    
     return () => clearInterval(interval);
   }, []);
   
   return (
     <NavBarContainer>
       <NavBar>
-        <h1>Find Them!</h1>
+        <h1>Waldo!</h1>
         <div className="timer-box">
           {
             props.isIntroActive ? '0.0' :
