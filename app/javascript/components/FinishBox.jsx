@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import SharedButton from './shared/Button.jsx';
 
 const Container = styled.div`
   position: fixed;

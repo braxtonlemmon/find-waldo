@@ -44,8 +44,9 @@ const Header = (props) => {
   
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(Date.now());
+    setTime(Date.now());
     }, 100);
+
     return () => clearInterval(interval);
   }, []);
   
@@ -53,7 +54,12 @@ const Header = (props) => {
     <NavBarContainer>
       <NavBar>
         <h1>Find Them!</h1>
-        <div className="timer-box">{((Date.now() - props.startTime) / 1000).toFixed(1)}</div>
+        <div className="timer-box">
+          {
+            props.isIntroActive ? '0.0' :
+          ((Date.now() - props.startTime) / 1000).toFixed(1)
+          }
+        </div>
         <div 
           className="top-scores-box"
           onClick={props.handleClickTopScores}

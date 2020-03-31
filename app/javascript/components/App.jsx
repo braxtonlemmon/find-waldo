@@ -8,19 +8,24 @@ import Frames from './Frames.jsx';
 import MessageBox from './MessageBox.jsx';
 import FinishBox from './FinishBox.jsx';
 import TopScores from './TopScores.jsx';
+import Intro from './Intro.jsx';
+import Characters from './Characters.jsx';
 import "typeface-rye";
 
 const App = () => {
   const [isBoxActive, setIsBoxActive] = useState(false);
-  const [posX, setPosX] = useState(null);
-  const [posY, setPosY] = useState(null);
-  const [characters, setCharacters] = useState(null);
-  const [boxes, setBoxes] = useState([]);
   const [isMessageActive, setIsMessageActive] = useState(false)
   const [isFound, setIsFound] = useState(false);
-  const [areAllFound, setAreAllFound] = useState(true);
-  const [startTime, setStartTime] = useState(Date.now());
+  const [isIntroActive, setIsIntroActive] = useState(true);
   const [isTopScoresActive, setIsTopScoresActive] = useState(false);
+  
+  const [posX, setPosX] = useState(null);
+  const [posY, setPosY] = useState(null);
+  
+  const [characters, setCharacters] = useState(null);
+  const [boxes, setBoxes] = useState([]);
+  const [areAllFound, setAreAllFound] = useState(false);
+  const [startTime, setStartTime] = useState(null);
   const [topScores, setTopScores] = useState(null);
 
   useEffect(() => {
@@ -55,6 +60,11 @@ const App = () => {
     setIsBoxActive(prevState => !prevState);
     setIsMessageActive(true);
   };
+
+  const handleClickStart = () => {
+    setStartTime(Date.now());
+    setIsIntroActive(false);
+  }
 
   const handleCloseMessage = () => {
     setIsMessageActive(false);
@@ -114,13 +124,24 @@ const App = () => {
     <>
       <Reset />
       <GlobalStyle />
-      <Header 
+      <Header
         startTime={startTime}
         handleClickTopScores={handleClickTopScores}
+        isIntroActive={isIntroActive}
       />
-      <Scene 
-        handleClick={handleClick}
-      />
+      
+      {
+        !isIntroActive &&
+        <Scene 
+          handleClick={handleClick}
+        /> 
+      } 
+      <Characters />
+      { isIntroActive &&
+        <Intro
+          handleClickStart={handleClickStart}
+        />
+      }
       {
         isBoxActive && 
         <CharacterBox
