@@ -7,6 +7,7 @@ import CharacterBox from './CharacterBox.jsx';
 import Frames from './Frames.jsx';
 import MessageBox from './MessageBox.jsx';
 import FinishBox from './FinishBox.jsx';
+import TopScores from './TopScores.jsx';
 import "typeface-rye";
 
 const App = () => {
@@ -19,7 +20,9 @@ const App = () => {
   const [isFound, setIsFound] = useState(false);
   const [areAllFound, setAreAllFound] = useState(false);
   const [startTime, setStartTime] = useState(Date.now());
-  
+  const [isTopScoresActive, setIsTopScoresActive] = useState(false);
+  const [topScores, setTopScores] = useState(null);
+
   useEffect(() => {
     getCharacters();
   }, []);
@@ -67,6 +70,23 @@ const App = () => {
     setStartTime(Date.now());
   }
 
+  const handleCloseTopScores = () => {
+    setIsTopScoresActive(false);
+  }
+
+  const handleClickTopScores = () => {
+    setIsTopScoresActive(true);
+    getTopScores();
+  }
+
+  const getTopScores = () => {
+    fetch('/api/v1/players/index')
+    .then(response => response.json())
+    .then(response => {
+      setTopScores(response);
+    })
+  }
+
   const checkDatabase = (name) => {
     const csrfToken = document.querySelector("[name='csrf-token']").content;
     fetch('/api/v1/characters/find', {
@@ -96,6 +116,7 @@ const App = () => {
       <GlobalStyle />
       <Header 
         startTime={startTime}
+        handleClickTopScores={handleClickTopScores}
       />
       <Scene 
         handleClick={handleClick}
@@ -126,6 +147,13 @@ const App = () => {
         <FinishBox 
           handleCloseFinishBox={handleCloseFinishBox}
           startTime={startTime}
+        />
+      }
+      {
+        isTopScoresActive &&
+        <TopScores 
+          topScores={topScores}
+          handleCloseTopScores={handleCloseTopScores}
         />
       }
     </>

@@ -49,7 +49,10 @@ const Header = (props) => {
       <NavBar>
         <h1>Find Them!</h1>
         <div className="timer-box">{((Date.now() - props.startTime) / 1000).toFixed(1)}</div>
-        <div className="top-scores-box">Top Scores</div>
+        <div 
+          className="top-scores-box"
+          onClick={props.handleClickTopScores}
+        >Top Scores</div>
       </NavBar>
     </NavBarContainer>
   )
