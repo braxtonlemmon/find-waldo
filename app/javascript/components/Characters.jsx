@@ -6,7 +6,6 @@ import Wenda from 'images/Wenda.png';
 import Woof from 'images/Woof.png';
 import Wizard from 'images/Wizard.png';
 
-
 const Container = styled.div`
   position: fixed;
   top: 80px;

@@ -7,8 +7,8 @@ const Container = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  border: 3px solid black;
-  background: green;
+  background: red;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,9 @@ const Container = styled.div`
 const Instructions = styled.div`
   width: 70%;
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  font-weight: 500;
+  text-shadow: 1px 1px 1px black;
   p {
     margin: 18px 0;
   }
@@ -27,13 +29,14 @@ const Instructions = styled.div`
 const Button = styled.button`
   border: none;
   border-radius: 5px;
-  background: black;
-  color: white;
+  background: white;
+  color: red;
   padding: 5px;
   cursor: pointer;
   font-size: 1.2em;
   &:hover {
-    color: yellow;
+    color: black;
+
   }
 `;
 

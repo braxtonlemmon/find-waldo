@@ -6,8 +6,11 @@ const Container = styled.div`
   left: 20%;
   right: 20%;
   bottom: 20%;
-  border: 5px solid black;
-  background: green;
+  border: 5px solid rgba(190,1,14,1);
+  background: white;
+  color: rgba(190,1,14,1);
+  text-shadow: 1px 1px 1px lightgray;
+  font-weight: 300;
   position: fixed;
   display: flex;
   flex-direction: column;

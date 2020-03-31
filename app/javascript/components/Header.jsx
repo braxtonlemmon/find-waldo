@@ -12,13 +12,16 @@ const NavBar = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  background: yellow;
+  background: white;
+  color: rgba(190,1,14,1);
   z-index: 5;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 5px;
   font-family: 'Rye', cursive;
+  text-shadow: 1px 1px 1px lightgray;
+  box-shadow: 0 5px 4px rgba(190,1,14,1);
   h1 {
     font-size: 2em;
   }
@@ -26,9 +29,8 @@ const NavBar = styled.header`
   .timer-box {
     font-size: 2em;
     font-family: monospace;
-    border-bottom: 3px dashed black;
-    border-top: 3px dashed black;
-
+    border-bottom: 3px dashed rgba(190,1,14,1);
+    border-top: 3px dashed rgba(190,1,14,1);
     text-align: right;
     padding: 5px;
   }
@@ -36,6 +38,9 @@ const NavBar = styled.header`
   .top-scores-box {
     cursor: pointer;
     font-size: 1.5em;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
