@@ -13,7 +13,7 @@ const NavBar = styled.header`
   top: 0;
   left: 0;
   background: white;
-  color: rgba(190,1,14,1);
+  color: ${props => props.theme.main};
   z-index: 5;
   display: flex;
   justify-content: space-around;
@@ -21,7 +21,7 @@ const NavBar = styled.header`
   padding: 5px;
   font-family: 'Rye', cursive;
   text-shadow: 1px 1px 1px lightgray;
-  box-shadow: 0 5px 4px rgba(190,1,14,1);
+  box-shadow: 0 5px 4px ${props => props.theme.main};
   h1 {
     font-size: 2em;
   }
@@ -29,8 +29,8 @@ const NavBar = styled.header`
   .timer-box {
     font-size: 2em;
     font-family: monospace;
-    border-bottom: 3px dashed rgba(190,1,14,1);
-    border-top: 3px dashed rgba(190,1,14,1);
+    border-bottom: 3px dashed ${props => props.theme.main};
+    border-top: 3px dashed ${props => props.theme.main};
     text-align: right;
     padding: 5px;
   }

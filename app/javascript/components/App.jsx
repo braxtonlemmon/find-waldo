@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Reset } from 'styled-reset';
+import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './GlobalStyle.js';
 import Header from './Header.jsx';
 import Scene from './Scene.jsx';
@@ -120,8 +121,12 @@ const App = () => {
     });
   }
 
+  const theme = {
+    main: 'rgba(190, 1, 14, 1)'
+  }
+
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Reset />
       <GlobalStyle />
       <Header
@@ -177,7 +182,7 @@ const App = () => {
           handleCloseTopScores={handleCloseTopScores}
         />
       }
-    </>
+    </ThemeProvider>
   );
 }
 

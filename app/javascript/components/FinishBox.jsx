@@ -8,7 +8,8 @@ const Container = styled.div`
   top: 15%;
   bottom: 15%;
   border: 3px solid black;
-  background: green;
+  background: white;
+  color: ${props => props.theme.main};
   font-family: 'Rye', cursive;
   display: flex;
   flex-direction: column;
@@ -28,8 +29,12 @@ const Container = styled.div`
     margin: 15px;
     font-size: 2em;
     width: 70%;
+    background: ${props => props.theme.main};
+    color: white;
+    &::placeholder {
+      color: white;
+    }
   }
-
   &>* {
     margin: 30px 0;
   }
@@ -38,7 +43,7 @@ const Container = styled.div`
 const Button = styled.button`
   border: none;
   border-radius: 5px;
-  background: black;
+  background: ${props => props.theme.main};
   color: white;
   font-size: 1.3em;
   padding: 8px;
