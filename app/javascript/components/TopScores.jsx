@@ -9,6 +9,15 @@ const Container = styled.div`
   border: 5px solid black;
   background: green;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const H1 = styled.h1`
+  font-size: 2.5em;
+  margin: 15px;
+  text-decoration: underline;
 `;
 
 const CloseButton = styled.button`
@@ -29,12 +38,26 @@ const CloseButton = styled.button`
   outline: none;
 `;
 
+const ScoreTable = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  width: 70%;
+  gap: 10px;
+
+  p {
+    margin-left: 30%;
+    font-size: 1.5em;
+  }
+`;
+
 const TopScores = (props) => {
   const generateScores = () => {
     let list = [];
     if (props.topScores) {
       props.topScores.forEach(scoreObj => {
-      list.push(<li>{`name: ${scoreObj.name} time: ${scoreObj.length}`}</li>)
+      list.push(<p>{scoreObj.name}</p>)
+      list.push(<p>{scoreObj.length}</p>)
       })
     }
     return list;
@@ -42,7 +65,10 @@ const TopScores = (props) => {
   
   return (
     <Container>
-      <h1>{generateScores()}</h1>
+      <H1>Top Scores</H1>
+      <ScoreTable>
+        {generateScores()}
+      </ScoreTable>
       <CloseButton
         onClick={props.handleCloseTopScores}
       >

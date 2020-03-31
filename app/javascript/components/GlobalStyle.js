@@ -6,6 +6,10 @@ const GlobalStyle = createGlobalStyle`
     user-select: none;
     box-sizing: border-box;
   }
+
+  html, body {
+    font-family: 'Rye', cursive;
+  }
 `;
 
 export default GlobalStyle;

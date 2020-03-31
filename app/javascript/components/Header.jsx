@@ -32,6 +32,11 @@ const NavBar = styled.header`
     text-align: right;
     padding: 5px;
   }
+
+  .top-scores-box {
+    cursor: pointer;
+    font-size: 1.5em;
+  }
 `;
 
 const Header = (props) => {
